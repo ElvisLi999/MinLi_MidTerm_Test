@@ -39,20 +39,20 @@ db.once("open", function () {
 });
 const index_1 = __importDefault(require("../Routes/index"));
 const books_1 = __importDefault(require("../Routes/books"));
-const app = express_1.default();
+const app = (0, express_1.default)();
 exports.default = app;
 app.set('views', path_1.default.join(__dirname, '../Views'));
 app.set('view engine', 'ejs');
-app.use(morgan_1.default('dev'));
+app.use((0, morgan_1.default)('dev'));
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: false }));
-app.use(cookie_parser_1.default());
+app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.static(path_1.default.join(__dirname, '../../Client')));
 app.use(express_1.default.static(path_1.default.join(__dirname, '../../node_modules')));
 app.use('/', index_1.default);
 app.use('/books', books_1.default);
 app.use(function (req, res, next) {
-    next(http_errors_1.default(404));
+    next((0, http_errors_1.default)(404));
 });
 app.use(function (err, req, res, next) {
     res.locals.message = err.message;

@@ -1,9 +1,4 @@
-/*
-* Author     : Min Li
-* Date       : Oct 27, 2021
-* Description: Min Li's Mid-Term Test
-* File       : /Server/Routes/index.ts
-*/
+
 
 // modules required for routing
 import express from 'express';

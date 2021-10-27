@@ -1,9 +1,4 @@
-/*
-* Author     : Min Li
-* Date       : Oct 27, 2021
-* Description: Min Li's Mid-Term Test
-* File       : /Server/Config/app.ts
-*/
+
 
 // moddules for node and express
 import createError from 'http-errors';
