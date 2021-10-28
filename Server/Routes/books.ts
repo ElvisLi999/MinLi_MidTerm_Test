@@ -33,6 +33,7 @@ router.get('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+     res.render('books/details', { title: 'Add', page: 'details', books: ''  });
 
 });
 
@@ -42,7 +43,26 @@ router.post('/add', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+  let newContact = new book({
 
+    "Title": req.body.title,
+    "Description": req.body.description,
+    "Price": req.body.price,
+    "Author": req.body.author,
+    "Genre": req.body.genre
+  });
+
+  // db.books.insert({book data is here...})
+  book.create(newContact, (err) => {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.redirect('/books');
+
+  });
 });
 
 // GET the Book Details page in order to edit an existing Book
