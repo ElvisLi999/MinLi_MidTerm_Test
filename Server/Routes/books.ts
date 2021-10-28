@@ -71,6 +71,20 @@ router.get('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+    let id = req.params.id;
+
+    // pass the id to the db and using db.book.find("_id": id) to get item's infor
+    book.findById(id, {}, {}, (err, booksItemToUpdate) =>
+    {
+      if(err)
+      {
+        console.error(err);
+        res.end(err);
+      }
+
+      // show the update view
+      res.render('books/details', {title: 'Edit', page: 'details', books: booksItemToUpdate });
+    })
 });
 
 // POST - process the information passed from the details form and update the document
@@ -79,6 +93,28 @@ router.post('/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+  let id = req.params.id;
+
+  // instantiate a new book Item
+  let updatedBookItem = new book ({
+    "_id": id,
+    "Title": req.body.title,
+    "Description": req.body.description,
+    "Price": req.body.price,
+    "Author": req.body.author,
+    "Genre": req.body.genre
+  });
+
+  // find the book item via db.books.update({"_id":id}) and then update
+  book.updateOne({_id:id}, updatedBookItem, {}, (err) =>{
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.redirect('/books');
+  });
 
 });
 
