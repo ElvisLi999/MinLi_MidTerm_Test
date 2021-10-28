@@ -106,7 +106,7 @@ router.post('/:id', (req, res, next) => {
   });
 
   // find the book item via db.books.update({"_id":id}) and then update
-  book.updateOne({_id:id}, updatedBookItem, {}, (err) =>{
+  book.updateOne({_id: id}, updatedBookItem, {}, (err) =>{
     if(err)
     {
       console.error(err);
@@ -124,6 +124,18 @@ router.get('/delete/:id', (req, res, next) => {
     /*****************
      * ADD CODE HERE *
      *****************/
+  let id = req.params.id;
+
+ // db.clothing.remove({"_id: id"})
+  book.remove({_id: id}, (err) => {
+    if(err)
+    {
+      console.error(err);
+      res.end(err);
+    }
+
+    res.redirect('/books');
+  });
 });
 
 
