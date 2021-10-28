@@ -1,6 +1,6 @@
 
 
 export const LocalURI = "mongodb://localhost/store";
-export const RemoteURI = "your remote host information goes here"
-export const HostName = "LocalHost";
+export const RemoteURI = process.env.RemoteURI;
+export const HostName = "RemoteHost";
 export const Secret = "someSecret";
